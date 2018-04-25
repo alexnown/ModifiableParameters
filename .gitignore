@@ -1,0 +1,8 @@
+.vs/
+[Tt]estResults/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+*.sln
+*.pidb
+*.userprefs
