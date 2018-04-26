@@ -45,6 +45,7 @@
     <Compile Include="Calculators\BoolCalculators.cs" />
     <Compile Include="Calculators\FloatCalculators.cs" />
     <Compile Include="Calculators\IntCalculators.cs" />
+    <Compile Include="Extensions\ModifiersExtensions.cs" />
     <Compile Include="Limiters\Int\IntBanLimiter.cs" />
     <Compile Include="Parameters\ALimitableParameter.cs" />
     <Compile Include="Parameters\AParameter.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="Parameters\FloatParameter.cs" />
     <Compile Include="Parameters\Interfaces.cs" />
     <Compile Include="Parameters\IntParameter.cs" />
-    <Compile Include="AParameterModifier.cs" />
+    <Compile Include="Parameters\ParameterModifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

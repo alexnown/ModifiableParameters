@@ -13,7 +13,7 @@ namespace ModifiableParameters.Parameters
         }
     }
 
-    public class BoolModifier : AParameterModifier<bool>
+    public class BoolModifier : ParameterModifier<bool>
     {
         public BoolModifier(bool value) : base(value)
         {

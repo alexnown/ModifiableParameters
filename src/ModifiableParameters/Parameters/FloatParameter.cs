@@ -14,7 +14,7 @@ namespace ModifiableParameters.Parameters
         }
     }
 
-    public class FloatModifier : AParameterModifier<float>
+    public class FloatModifier : ParameterModifier<float>
     {
         public FloatModifier(float value) : base(value)
         {

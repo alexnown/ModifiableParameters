@@ -18,43 +18,43 @@ namespace ModifiableParameters.Parameters
 
         private V _baseValue;
 
-        #region Modifiable implementation
+        #region IModifiable implementation
 
-        public event Action<AParameterModifier<V>> ModifierAdded;
-        public event Action<AParameterModifier<V>> ModifierRemoved;
+        public event Action<ParameterModifier<V>> ModifierAdded;
+        public event Action<ParameterModifier<V>> ModifierRemoved;
 
         public bool RecalculateOnChangeModifiers { get; set; } = true;
 
         public int ModifiersCount => _modifiersList.Count;
 
-        private readonly List<AParameterModifier<V>> _modifiersList = new List<AParameterModifier<V>>();
+        private readonly List<ParameterModifier<V>> _modifiersList = new List<ParameterModifier<V>>();
 
-        public void AddModifier(AParameterModifier<V> modifier)
+        public void AddModifier(ParameterModifier<V> modifier)
         {
-            if (ModifierExists(modifier)) throw new InvalidOperationException("Modifier already exists");
+            if (ContainsModifier(modifier)) throw new InvalidOperationException("Modifier already exists");
             modifier.OnValueChanged += RecalculateCurentValue;
             _modifiersList.Add(modifier);
-            if (RecalculateOnChangeModifiers) RecalculateCurentValue();
             ModifierAdded?.Invoke(modifier);
+            if (RecalculateOnChangeModifiers) RecalculateCurentValue();
         }
 
-        public void RemoveModifier(AParameterModifier<V> modifier)
+        public void RemoveModifier(ParameterModifier<V> modifier)
         {
             bool success = _modifiersList.Remove(modifier);
             if (success)
             {
                 modifier.OnValueChanged -= RecalculateCurentValue;
-                if (RecalculateOnChangeModifiers) RecalculateCurentValue();
                 ModifierRemoved?.Invoke(modifier);
+                if (RecalculateOnChangeModifiers) RecalculateCurentValue();
             }
         }
 
-        public bool ModifierExists(AParameterModifier<V> modifier)
+        public bool ContainsModifier(ParameterModifier<V> modifier)
         {
             return _modifiersList.Contains(modifier);
         }
 
-        public IEnumerable<AParameterModifier<V>> GetModifiers()
+        public IEnumerable<ParameterModifier<V>> GetModifiers()
         {
             return _modifiersList;
         }

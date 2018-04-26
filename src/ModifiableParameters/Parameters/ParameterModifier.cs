@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ModifiableParameters
+namespace ModifiableParameters.Parameters
 {
-    public abstract class AParameterModifier<V>
+    public class ParameterModifier<V>
     {
         public event Action OnValueChanged;
         
@@ -21,7 +21,7 @@ namespace ModifiableParameters
 
         private V _value;
 
-        protected AParameterModifier(V value)
+        public ParameterModifier(V value)
         {
             _value = value;
         }

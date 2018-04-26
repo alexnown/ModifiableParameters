@@ -3,6 +3,7 @@
 [Bb]in/
 [Oo]bj/
 [Dd]ebug/
+[Pp]ackages/
 *.sln
 *.pidb
 *.userprefs

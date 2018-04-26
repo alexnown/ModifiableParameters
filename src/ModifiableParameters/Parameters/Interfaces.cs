@@ -12,20 +12,22 @@ namespace ModifiableParameters.Parameters
         AParameterCalculator<V> Calculator { get; set; }
         void RecalculateCurentValue();
     }
-
-    public interface IHasBaseValue <V>
-    {
-        V BaseValue { get; set; }
-    }
     
     public interface IModifiable<V>
     {
+        event Action<ParameterModifier<V>> ModifierAdded;
+        event Action<ParameterModifier<V>> ModifierRemoved;
         bool RecalculateOnChangeModifiers { get; set; }
         int ModifiersCount { get; }
-        void AddModifier(AParameterModifier<V> modifier);
-        void RemoveModifier(AParameterModifier<V> modifier);
-        bool ModifierExists(AParameterModifier<V> modifier);
-        IEnumerable<AParameterModifier<V>> GetModifiers();
+        void AddModifier(ParameterModifier<V> modifier);
+        void RemoveModifier(ParameterModifier<V> modifier);
+        bool ContainsModifier(ParameterModifier<V> modifier);
+        IEnumerable<ParameterModifier<V>> GetModifiers();
+    }
+
+    public interface IModifiableParameter<V> : IParameter<V>, IModifiable<V>
+    {
+        V BaseValue { get; set; }
     }
 
     public interface ILimitable<V>
@@ -36,10 +38,5 @@ namespace ModifiableParameters.Parameters
         void RemoveLimiter(AParameterLimiter<V> limiter);
         bool LimiterExists(AParameterLimiter<V> limiter);
         IEnumerable<AParameterLimiter<V>> GetLimiters();
-    }
-
-    public interface IModifiableParameter<V> : IParameter<V>, IModifiable<V>, IHasBaseValue<V>
-    {
-
     }
 }

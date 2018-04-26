@@ -13,7 +13,7 @@ namespace ModifiableParameters.Parameters
         }
     }
 
-    public class IntModifier : AParameterModifier<int>
+    public class IntModifier : ParameterModifier<int>
     {
         public IntModifier(int value) : base(value)
         {
