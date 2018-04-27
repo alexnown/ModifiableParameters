@@ -45,6 +45,7 @@
     <Compile Include="Calculators\BoolCalculators.cs" />
     <Compile Include="Calculators\FloatCalculators.cs" />
     <Compile Include="Calculators\IntCalculators.cs" />
+    <Compile Include="Extensions\LimitersExtentions.cs" />
     <Compile Include="Extensions\ModifiersExtensions.cs" />
     <Compile Include="Limiters\Int\IntBanLimiter.cs" />
     <Compile Include="Parameters\ALimitableParameter.cs" />

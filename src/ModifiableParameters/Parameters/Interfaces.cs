@@ -32,11 +32,13 @@ namespace ModifiableParameters.Parameters
 
     public interface ILimitable<V>
     {
+        event Action<AParameterLimiter<V>> LimiterAdded;
+        event Action<AParameterLimiter<V>> LimiterRemoved;
         bool RecalculateOnChangeLimiters { get; set; }
         int LimitersCount { get; }
         void AddLimiter(AParameterLimiter<V> limiter);
         void RemoveLimiter(AParameterLimiter<V> limiter);
-        bool LimiterExists(AParameterLimiter<V> limiter);
+        bool ContainsLimiter(AParameterLimiter<V> limiter);
         IEnumerable<AParameterLimiter<V>> GetLimiters();
     }
 }

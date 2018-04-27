@@ -37,15 +37,16 @@ namespace ModifiableParameters.Parameters
 
         public void AddLimiter(AParameterLimiter<V> limiter)
         {
-            if (LimiterExists(limiter)) throw new InvalidOperationException("Limiter already exists");
+            if (ContainsLimiter(limiter)) throw new InvalidOperationException("Limiter already exists");
             if (_parameterLimitersList == null) _parameterLimitersList = new List<AParameterLimiter<V>>();
             _parameterLimitersList.Add(limiter);
             if (RecalculateOnChangeLimiters) RecalculateCurentValue();
             LimiterAdded?.Invoke(limiter);
         }
-        
+
         public void RemoveLimiter(AParameterLimiter<V> limiter)
         {
+            if (limiter == null) throw new ArgumentNullException("Limiter is null.");
             bool success = _parameterLimitersList.Remove(limiter);
             if (success)
             {
@@ -54,8 +55,9 @@ namespace ModifiableParameters.Parameters
             }
         }
 
-        public bool LimiterExists(AParameterLimiter<V> limiter)
+        public bool ContainsLimiter(AParameterLimiter<V> limiter)
         {
+            if (limiter == null) throw new ArgumentNullException("Limiter is null.");
             return _parameterLimitersList?.Contains(limiter) ?? false;
         }
 

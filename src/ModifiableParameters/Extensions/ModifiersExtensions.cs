@@ -6,9 +6,9 @@ namespace ModifiableParameters.Extensions
 {
     public static class ModifiersExtensions
     {
-        public static ParameterModifier<V> [] RemoveAllModifiers<V>(this IModifiable<V> modifiableParameter)
+        public static ParameterModifier<V>[] RemoveAllModifiers<V>(this IModifiable<V> modifiableParameter)
         {
-            if(modifiableParameter.ModifiersCount==0) return null;
+            if (modifiableParameter.ModifiersCount == 0) return null;
             var modifiersList = modifiableParameter.GetModifiers().ToArray();
             foreach (var modifier in modifiersList)
             {

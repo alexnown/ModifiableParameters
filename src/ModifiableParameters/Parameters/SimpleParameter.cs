@@ -4,7 +4,7 @@ using ModifiableParameters.Calculators;
 
 namespace ModifiableParameters.Parameters
 {
-    public class SimpleParameter <V> : ALimitableParameter<V>, IModifiableParameter<V>
+    public class SimpleParameter<V> : ALimitableParameter<V>, IModifiableParameter<V>
     {
         public V BaseValue
         {
@@ -35,7 +35,8 @@ namespace ModifiableParameters.Parameters
             modifier.OnValueChanged += RecalculateCurentValue;
             _modifiersList.Add(modifier);
             ModifierAdded?.Invoke(modifier);
-            if (RecalculateOnChangeModifiers) RecalculateCurentValue();
+            if (RecalculateOnChangeModifiers)
+                RecalculateCurentValue();
         }
 
         public void RemoveModifier(ParameterModifier<V> modifier)
@@ -46,13 +47,14 @@ namespace ModifiableParameters.Parameters
             {
                 modifier.OnValueChanged -= RecalculateCurentValue;
                 ModifierRemoved?.Invoke(modifier);
-                if (RecalculateOnChangeModifiers) RecalculateCurentValue();
+                if (RecalculateOnChangeModifiers)
+                    RecalculateCurentValue();
             }
         }
 
         public bool ContainsModifier(ParameterModifier<V> modifier)
         {
-            if(modifier == null) throw new ArgumentNullException("Modifier is null.");
+            if (modifier == null) throw new ArgumentNullException("Modifier is null.");
             return _modifiersList.Contains(modifier);
         }
 
