@@ -40,6 +40,7 @@ namespace ModifiableParameters.Parameters
 
         public void RemoveModifier(ParameterModifier<V> modifier)
         {
+            if (modifier == null) throw new ArgumentNullException("Modifier is null.");
             bool success = _modifiersList.Remove(modifier);
             if (success)
             {
@@ -51,6 +52,7 @@ namespace ModifiableParameters.Parameters
 
         public bool ContainsModifier(ParameterModifier<V> modifier)
         {
+            if(modifier == null) throw new ArgumentNullException("Modifier is null.");
             return _modifiersList.Contains(modifier);
         }
 
