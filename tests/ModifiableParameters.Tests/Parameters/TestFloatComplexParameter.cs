@@ -4,7 +4,7 @@ using ModifiableParameters.Parameters;
 
 namespace TestsModifiableParameters.Parameters
 {
-    
+
     [TestClass]
     public class TestFloatComplexParameter
     {
@@ -22,54 +22,59 @@ namespace TestsModifiableParameters.Parameters
             CreateAndCheckValue(GetRandomValueFunc(), GetRandomValueFunc());
         }
 
-        /*
         [TestMethod]
-        public void RecalculateEventOnBaseValueChanged()
+        public void ChangeBaseValue_HandleRecalculateEvent()
         {
             var parameter = new FloatComplexParameter(10, 2);
             bool recalculateHandled = false;
-            parameter.ParameterRecalculated += (newValue) => { recalculateHandled = true; };
+            Action<float> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
+            parameter.ParameterRecalculated += recalculateEventHandler;
+
             parameter.NumericPart.BaseValue = 20;
-            Assert.AreEqual(recalculateHandled, true);
+            Assert.AreEqual(true, recalculateHandled);
+
             recalculateHandled = false;
             parameter.MultiplierPart.BaseValue = 1;
-            Assert.AreEqual(recalculateHandled, true);
+            Assert.AreEqual(true, recalculateHandled);
+
+            parameter.ParameterRecalculated -= recalculateEventHandler;
         }
 
         [TestMethod]
-        public override void RecalculateEventOnChangeModifiers()
+        public void ChangeModifier_HandleRecalculateEvent()
         {
             var parameter = new FloatComplexParameter(10, 2);
-            bool recalculateHandled = false;
-            parameter.ParameterRecalculated += (newValue) => { recalculateHandled = true; };
             var modifier = new FloatModifier(10);
-            //Add numeric modifier
+            bool recalculateHandled = false;
+            Action<float> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
+            parameter.ParameterRecalculated += recalculateEventHandler;
+
             recalculateHandled = false;
             parameter.NumericPart.AddModifier(modifier);
-            Assert.AreEqual(recalculateHandled, true);
-            //Add multiplier modifier
+            Assert.AreEqual(true, recalculateHandled);
+
             recalculateHandled = false;
             parameter.MultiplierPart.AddModifier(modifier);
-            Assert.AreEqual(recalculateHandled, true);
-            //Remove numeric modifier
+            Assert.AreEqual(true, recalculateHandled);
+
             recalculateHandled = false;
             parameter.NumericPart.RemoveModifier(modifier);
-            Assert.AreEqual(recalculateHandled, true);
-            //Remove multiplier modifier
+            Assert.AreEqual(true, recalculateHandled);
+
             recalculateHandled = false;
             parameter.MultiplierPart.RemoveModifier(modifier);
-            Assert.AreEqual(recalculateHandled, true);
-        } */
+            Assert.AreEqual(true, recalculateHandled);
+        }
 
         private FloatComplexParameter CreateAndCheckValue(float numeric, float multipliar)
         {
-            var parameter = new FloatComplexParameter(numeric,multipliar);
-            Assert.AreEqual(numeric,parameter.NumericPart.BaseValue);
-            Assert.AreEqual(numeric,parameter.NumericPart.CurrentValue);
+            var parameter = new FloatComplexParameter(numeric, multipliar);
+            Assert.AreEqual(numeric, parameter.NumericPart.BaseValue);
+            Assert.AreEqual(numeric, parameter.NumericPart.CurrentValue);
             Assert.AreEqual(multipliar, parameter.MultiplierPart.BaseValue);
             Assert.AreEqual(multipliar, parameter.MultiplierPart.CurrentValue);
             Assert.AreEqual(numeric * multipliar, parameter.CurrentValue);
             return parameter;
         }
-    } 
+    }
 }
