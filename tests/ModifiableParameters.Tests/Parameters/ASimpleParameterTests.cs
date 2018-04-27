@@ -35,6 +35,14 @@ namespace TestsModifiableParameters.Parameters
             modifiableParameterTests.RunTests(parameter, GetRandomValueFunc);
         }
 
+        [TestMethod]
+        public void RunLimitableInterfaceTests()
+        {
+            var parameter = CreateAndCheckValue(GetRandomValueFunc());
+            var limitableTests = new LimitableInterfaceTests<V>();
+            limitableTests.RunTests(parameter);
+        }
+
         protected P CreateAndCheckValue(V baseValue)
         {
             var parameter = Activator.CreateInstance(typeof(P), baseValue) as SimpleParameter<V>;

@@ -73,6 +73,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\LimitableInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableParameterInterfaceTests.cs" />
     <Compile Include="Parameters\ParameterInterfaceTests.cs" />

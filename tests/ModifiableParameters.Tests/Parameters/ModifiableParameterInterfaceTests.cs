@@ -8,10 +8,19 @@ namespace TestsModifiableParameters.Parameters
     {
         public void RunTests(IModifiableParameter<V> parameter, Func<V> getRandomValueFunc)
         {
+            bool recalculateOn = parameter.RecalculateOnChangeModifiers;
+
             ChangeBaseValue_HandleRecalculateEvent(parameter, getRandomValueFunc());
             ChangeModifier_HandleRecalculateEvent(parameter);
+
+            parameter.RecalculateOnChangeModifiers = false;
             AddModifier_CheckEventsOrder(parameter);
             RemoveModifier_CheckEventsOrder(parameter);
+            parameter.RecalculateOnChangeModifiers = true;
+            AddModifier_CheckEventsOrder(parameter);
+            RemoveModifier_CheckEventsOrder(parameter);
+
+            parameter.RecalculateOnChangeModifiers = recalculateOn;
         }
 
         public void ChangeBaseValue_HandleRecalculateEvent(IModifiableParameter<V> parameter, V newBaseValue)
@@ -64,9 +73,10 @@ namespace TestsModifiableParameters.Parameters
             parameter.ModifierAdded += modifierChangeHandler;
 
             parameter.AddModifier(modifier);
-            Assert.AreEqual(1, modifierEventSequence);
-            Assert.AreEqual(2, recalculateEventSequence);
             Assert.AreEqual(true, parameter.ContainsModifier(modifier));
+            Assert.AreEqual(1, modifierEventSequence);
+            int recalculateExpectedSequence = parameter.RecalculateOnChangeModifiers ? 2 : 0;
+            Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
 
             parameter.ParameterRecalculated -= recalculateEventHandler;
             parameter.ModifierAdded -= modifierChangeHandler;
@@ -96,9 +106,11 @@ namespace TestsModifiableParameters.Parameters
             parameter.ModifierRemoved += modifierChangeHandler;
 
             parameter.RemoveModifier(modifier);
-            Assert.AreEqual(1, modifierEventSequence);
-            Assert.AreEqual(2, recalculateEventSequence);
             Assert.AreEqual(false, parameter.ContainsModifier(modifier));
+            Assert.AreEqual(1, modifierEventSequence);
+            int recalculateExpectedSequence = parameter.RecalculateOnChangeModifiers ? 2 : 0;
+            Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
+
 
             parameter.ParameterRecalculated -= recalculateEventHandler;
             parameter.ModifierRemoved -= modifierChangeHandler;

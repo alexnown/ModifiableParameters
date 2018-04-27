@@ -23,6 +23,14 @@ namespace TestsModifiableParameters.Parameters
         }
 
         [TestMethod]
+        public void RunLimitableInterfaceTests()
+        {
+            var parameter = new FloatComplexParameter(10, 2);
+            var limitableTests = new LimitableInterfaceTests<float>();
+            limitableTests.RunTests(parameter);
+        }
+
+        [TestMethod]
         public void ChangeBaseValue_HandleRecalculateEvent()
         {
             var parameter = new FloatComplexParameter(10, 2);

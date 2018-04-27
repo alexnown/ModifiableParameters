@@ -17,8 +17,8 @@ namespace TestsModifiableParameters.Parameters
             CheckContainsNullModifier_CatchArgumentNullException(parameter);
             AddAlreadyContainsModifier_CatchInvalidOparetionException(parameter);
             AddModifierTests(parameter);
-            CheckContainsModifier(parameter);
             RemoveModifierTests(parameter);
+            CheckContainsModifier(parameter);
             CheckModifiersCountUpdate(parameter);
         }
 
@@ -75,6 +75,7 @@ namespace TestsModifiableParameters.Parameters
                 Assert.Fail($"{nameof(InvalidOperationException)} not throws when modifier added second time.");
             }
             catch (InvalidOperationException) { }
+            parameter.RemoveModifier(modifier);
         }
 
         public void AddModifierTests(IModifiable<V> parameter)
@@ -101,6 +102,14 @@ namespace TestsModifiableParameters.Parameters
             AssertModifierContainedInParameter(true, parameter, modifier);
             parameter.RemoveModifier(modifier);
             AssertModifierContainedInParameter(false, parameter, modifier);
+        }
+
+        public void AssertModifierContainedInParameter(bool expected, IModifiable<V> parameter, ParameterModifier<V> modifier)
+        {
+            bool fromContainedMethod = parameter.ContainsModifier(modifier);
+            Assert.AreEqual(expected, fromContainedMethod);
+            bool foundedInList = parameter.GetModifiers().Contains(modifier);
+            Assert.AreEqual(expected, foundedInList);
         }
 
         public void RemoveModifierTests(IModifiable<V> parameter)
@@ -138,14 +147,6 @@ namespace TestsModifiableParameters.Parameters
             if (removedModifiers != null)
                 parameter.AddAllModifiers(removedModifiers);
         }
-
-        public void AssertModifierContainedInParameter(bool expected, IModifiable<V> parameter, ParameterModifier<V> modifier)
-        {
-            bool fromContainedMethod = parameter.ContainsModifier(modifier);
-            Assert.AreEqual(expected, fromContainedMethod);
-            bool foundedInList = parameter.GetModifiers().Contains(modifier);
-            Assert.AreEqual(expected, foundedInList);
-        }
-
+        
     }
 }
