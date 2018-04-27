@@ -1,13 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModifiableParameters.Parameters;
 
-namespace TestsModifiableParameters
+namespace TestsModifiableParameters.Parameters
 {
     [TestClass]
     public class TestsIntParameter : ASimpleParameterTests<IntParameter, int>
     {
+        public override Func<int> GetRandomValueFunc => () => new Random().Next(int.MinValue, int.MaxValue);
+
         [TestMethod]
-        public override void TestBaseValueAfterCreate()
+        public override void CheckBaseValuesAfterInstance()
         {
             CreateAndCheckValue(int.MinValue);
             CreateAndCheckValue(-500);
