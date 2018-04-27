@@ -5,9 +5,9 @@ using ModifiableParameters.Parameters;
 namespace TestsModifiableParameters.Parameters
 {
     [TestClass]
-    public class TestFloatParameter : ASimpleParameterTests<FloatParameter,float>
+    public class TestFloatParameter : ASimpleParameterTests<FloatParameter, float>
     {
-        public override Func<float> GetRandomValueFunc => () => (float) new Random().NextDouble();
+        public override Func<float> GetRandomValueFunc => () => (float)new Random().NextDouble();
 
         [TestMethod]
         public override void CheckBaseValuesAfterInstance()

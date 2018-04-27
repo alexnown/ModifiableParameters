@@ -12,9 +12,9 @@ namespace TestsModifiableParameters.Parameters
         {
             SetNullCalculator_CatchArgumentNullException(parameter);
             CallRecalculate_HandleRecalculateEvent(parameter);
-            SetCalculator_RecalculateEventAndResult(parameter,randomValue);
+            SetCalculator_RecalculateEventAndResult(parameter, randomValue);
         }
-        
+
         public void SetNullCalculator_CatchArgumentNullException(IParameter<V> parameter)
         {
             try
@@ -32,18 +32,18 @@ namespace TestsModifiableParameters.Parameters
             parameter.ParameterRecalculated += recalculateAction;
 
             parameter.RecalculateCurentValue();
-            Assert.AreEqual(true,recalculateEventHanded);
-             
-            parameter.ParameterRecalculated -= recalculateAction; 
+            Assert.AreEqual(true, recalculateEventHanded);
+
+            parameter.ParameterRecalculated -= recalculateAction;
         }
-        
+
 
         public void SetCalculator_RecalculateEventAndResult(IParameter<V> parameter, V someValue)
         {
             var prevCalculator = parameter.Calculator;
-            
+
             Mock<AParameterCalculator<V>> calculatorMock = new Mock<AParameterCalculator<V>>();
-            
+
             calculatorMock.Setup(p => p.CalculateCurrentValue(parameter)).Returns(someValue);
 
             bool recalculateEventHanded = false;
@@ -52,9 +52,9 @@ namespace TestsModifiableParameters.Parameters
 
             parameter.Calculator = calculatorMock.Object;
             Assert.AreEqual(true, recalculateEventHanded);
-            Assert.AreEqual(someValue,parameter.CurrentValue);
+            Assert.AreEqual(someValue, parameter.CurrentValue);
             calculatorMock.Verify(p => p.CalculateCurrentValue(parameter), Times.Once);
-            
+
             parameter.ParameterRecalculated -= recalculateAction;
             parameter.Calculator = prevCalculator;
         }

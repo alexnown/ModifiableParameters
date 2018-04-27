@@ -21,7 +21,7 @@ namespace TestsModifiableParameters.Parameters
             RemoveModifierTests(parameter);
             CheckModifiersCountUpdate(parameter);
         }
-        
+
         public void ChangeRecalculateFlag(IModifiable<V> parameter)
         {
             bool recalculateOn = parameter.RecalculateOnChangeModifiers;
@@ -41,7 +41,8 @@ namespace TestsModifiableParameters.Parameters
             {
                 parameter.AddModifier(null);
                 Assert.Fail($"{nameof(ArgumentNullException)} not throws on add null modifier.");
-            } catch(ArgumentNullException) { }
+            }
+            catch (ArgumentNullException) { }
         }
 
         public void RemoveNullModifier_CatchArgumentNullException(IModifiable<V> parameter)
@@ -50,7 +51,8 @@ namespace TestsModifiableParameters.Parameters
             {
                 parameter.RemoveModifier(null);
                 Assert.Fail($"{nameof(ArgumentNullException)} not throws on remove null modifier.");
-            } catch(ArgumentNullException) { }
+            }
+            catch (ArgumentNullException) { }
         }
 
         public void CheckContainsNullModifier_CatchArgumentNullException(IModifiable<V> parameter)
@@ -94,7 +96,7 @@ namespace TestsModifiableParameters.Parameters
         public void CheckContainsModifier(IModifiable<V> parameter)
         {
             var modifier = new ParameterModifier<V>(default(V));
-            AssertModifierContainedInParameter(false,parameter, modifier);
+            AssertModifierContainedInParameter(false, parameter, modifier);
             parameter.AddModifier(modifier);
             AssertModifierContainedInParameter(true, parameter, modifier);
             parameter.RemoveModifier(modifier);
@@ -111,7 +113,7 @@ namespace TestsModifiableParameters.Parameters
             parameter.ModifierRemoved += removeEventHandler;
 
             bool isContained = parameter.ContainsModifier(modifier);
-            Assert.AreEqual(true,isContained);
+            Assert.AreEqual(true, isContained);
 
             parameter.RemoveModifier(modifier);
 
