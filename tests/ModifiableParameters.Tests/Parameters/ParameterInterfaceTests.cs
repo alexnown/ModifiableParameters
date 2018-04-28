@@ -42,7 +42,7 @@ namespace TestsModifiableParameters.Parameters
         {
             var prevCalculator = parameter.Calculator;
 
-            Mock<AParameterCalculator<V>> calculatorMock = new Mock<AParameterCalculator<V>>();
+            Mock<IParameterCalculator<V>> calculatorMock = new Mock<IParameterCalculator<V>>();
 
             calculatorMock.Setup(p => p.CalculateCurrentValue(parameter)).Returns(someValue);
 

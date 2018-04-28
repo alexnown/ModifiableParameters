@@ -82,7 +82,7 @@ namespace TestsModifiableParameters.Parameters
         public void AddLimiterTests(ILimitable<V> parameter)
         {
             bool addedEventHandled = false;
-            Action<AParameterLimiter<V>> addEventHandler = parameterModifier => addedEventHandled = true;
+            Action<IParameterLimiter<V>> addEventHandler = parameterModifier => addedEventHandled = true;
             parameter.LimiterAdded += addEventHandler;
             var limiter = PrepareLimiterMock().Object;
             parameter.AddLimiter(limiter);
@@ -104,7 +104,7 @@ namespace TestsModifiableParameters.Parameters
             AssertLimiterContainedInParameter(false, parameter, limiter);
         }
 
-        public void AssertLimiterContainedInParameter(bool expected, ILimitable<V> parameter, AParameterLimiter<V> limiter)
+        public void AssertLimiterContainedInParameter(bool expected, ILimitable<V> parameter, IParameterLimiter<V> limiter)
         {
             bool fromContainedMethod = parameter.ContainsLimiter(limiter);
             Assert.AreEqual(expected, fromContainedMethod);
@@ -118,7 +118,7 @@ namespace TestsModifiableParameters.Parameters
             parameter.AddLimiter(limiter);
 
             bool removedEventHandled = false;
-            Action<AParameterLimiter<V>> removeEventHandler = parameterModifier => removedEventHandled = true;
+            Action<IParameterLimiter<V>> removeEventHandler = parameterModifier => removedEventHandled = true;
             parameter.LimiterRemoved += removeEventHandler;
 
             bool isContained = parameter.ContainsLimiter(limiter);
@@ -148,9 +148,9 @@ namespace TestsModifiableParameters.Parameters
                 parameter.AddAllLimiters(removedModifiers);
         }
 
-        private Mock<AParameterLimiter<V>> PrepareLimiterMock()
+        private Mock<IParameterLimiter<V>> PrepareLimiterMock()
         {
-            var mock = new Mock<AParameterLimiter<V>>();
+            var mock = new Mock<IParameterLimiter<V>>();
             mock.Setup(m => m.IsMeetLimit(It.IsAny<IParameter<V>>(), ref It.Ref<V>.IsAny)).Returns(true);
             return mock;
         }

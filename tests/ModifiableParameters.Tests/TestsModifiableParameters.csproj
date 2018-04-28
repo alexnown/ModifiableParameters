@@ -73,6 +73,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Calculators\BoolCalculatorsTests.cs" />
+    <Compile Include="Calculators\FloatCalculatorTests.cs" />
+    <Compile Include="Calculators\IntCalculatorTests.cs" />
     <Compile Include="Parameters\LimitableInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableParameterInterfaceTests.cs" />
