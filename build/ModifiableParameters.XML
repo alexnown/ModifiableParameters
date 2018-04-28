@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ModifiableParameters</name>
+    </assembly>
+    <members>
+        <member name="T:ModifiableParameters.Calculators.IParameterCalculator`1">
+            <summary> Algorithm for applying the modifier list to calculate the CurrentValue of the parameter. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.EmptyModifiersRequirement">
+            <summary> Returns parameter base value if don't contain any modifiers. If parametr has any modifiers, returns !BaseValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.AndGateCalculator">
+            <summary> Returns BaseValue if it and all modifiers value the same (or modifiers count is 0). If contains modifiers with another values, returns !BaseValue.</summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.SameModifiersValueRequirement">
+            <summary> Returns true if parameter base value and all modifiers value the same. If don't contain any modifiers, returns true.</summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.FloatAdditionCalculator">
+            <summary> Adds the parameter base value and modifiers value. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.IntAdditionCalculator">
+            <summary> Adds the parameter base value and modifiers value. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.IParameterLimiter`1">
+            <summary> Limiter allows to apply some requirements to calculated CurrentValue. 
+            Use for setting limits for current value or checking for 0, etc. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Limiters.IParameterLimiter`1.IsMeetLimit(ModifiableParameters.Parameters.IParameter{`0},`0@)">
+            <summary>
+            Check if the argument correctedCurrValue meets some requirements. 
+            If not, change ref correctedCurrValue to correct value and return false.
+            </summary>
+            <returns>True if correctedCurrValue meet this limiter.</returns>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.FloatModifierBanLimiter">
+            <summary> Checks the list of modifiers for forbidden value. If it finds a banned value, changed correctedCurrValue to this limiter СorrectedValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.FloatMaxValueLimiter">
+            <summary> Задает максимальное значение для CurrentValue параметра. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.FloatMinValueLimiter">
+            <summary> Задает минимальное значение для CurrentValue параметра. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Parameters.ALimitableParameter`1">
+            <summary> Abstract parameter that implements ILimitable interface.
+            Limiters apply to CurrentValue after recalculate and allow you to limit the resulting value. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Parameters.FloatComplexCalculator">
+            <summary> Multiplies NumericPart value by MultiplierPart value. </summary>
+        </member>
+    </members>
+</doc>
