@@ -8,7 +8,7 @@ namespace ModifiableParameters.Parameters
         {
         }
 
-        public IntParameter(int baseValue, AParameterCalculator<int> calculateStrategy) : base(baseValue, calculateStrategy)
+        public IntParameter(int baseValue, IParameterCalculator<int> calculateStrategy) : base(baseValue, calculateStrategy)
         {
         }
     }

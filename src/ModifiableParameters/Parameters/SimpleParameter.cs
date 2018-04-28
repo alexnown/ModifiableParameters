@@ -65,7 +65,7 @@ namespace ModifiableParameters.Parameters
 
         #endregion
 
-        public SimpleParameter(V baseValue, AParameterCalculator<V> calculateStrategy) : base(calculateStrategy)
+        public SimpleParameter(V baseValue, IParameterCalculator<V> calculateStrategy) : base(calculateStrategy)
         {
             _baseValue = baseValue;
             RecalculateCurentValue();

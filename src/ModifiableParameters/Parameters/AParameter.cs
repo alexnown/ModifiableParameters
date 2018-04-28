@@ -11,7 +11,7 @@ namespace ModifiableParameters.Parameters
         public event Action<V> ParameterRecalculated;
         public V CurrentValue => _currentValue;
 
-        public AParameterCalculator<V> Calculator
+        public IParameterCalculator<V> Calculator
         {
             get { return _calculateStrategy; }
             set
@@ -22,7 +22,7 @@ namespace ModifiableParameters.Parameters
             }
         }
 
-        protected AParameterCalculator<V> _calculateStrategy;
+        protected IParameterCalculator<V> _calculateStrategy;
         protected V _currentValue;
         protected void OnRecalculate(V newValue) => ParameterRecalculated?.Invoke(newValue);
         
@@ -33,7 +33,7 @@ namespace ModifiableParameters.Parameters
             OnRecalculate(newValue);
         }
 
-        protected AParameter(AParameterCalculator<V> calculateStrategy)
+        protected AParameter(IParameterCalculator<V> calculateStrategy)
         {
             _calculateStrategy = calculateStrategy;
         }

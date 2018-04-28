@@ -7,8 +7,8 @@ namespace ModifiableParameters.Parameters
     {
         public readonly FloatParameter NumericPart;
         public readonly FloatParameter MultiplierPart;
-        
-        public FloatComplexParameter(float numericValue, float multiplier=1, AParameterCalculator<float> calculateStrategy=null) : 
+
+        public FloatComplexParameter(float numericValue, float multiplier = 1, IParameterCalculator<float> calculateStrategy = null) :
             base(calculateStrategy ?? new FloatComplexCalculator())
         {
             NumericPart = new FloatParameter(numericValue);
@@ -17,17 +17,17 @@ namespace ModifiableParameters.Parameters
             MultiplierPart.ParameterRecalculated += OnPartRecalculated;
             RecalculateCurentValue();
         }
-        
+
         private void OnPartRecalculated(float newValue)
         {
             RecalculateCurentValue();
         }
     }
 
-    /// <summary> Стандартная стратегия подсчета составного параметра: NumericPart умножается на MultiplierPart. </summary>
-    public class FloatComplexCalculator : AParameterCalculator<float>
+    /// <summary> Multiplies NumericPart value by MultiplierPart value. </summary>
+    public class FloatComplexCalculator : IParameterCalculator<float>
     {
-        public override float CalculateCurrentValue(IParameter<float> parameter)
+        public float CalculateCurrentValue(IParameter<float> parameter)
         {
             var floatComplexParameter = parameter as FloatComplexParameter;
             if (floatComplexParameter == null) throw new InvalidOperationException($"{nameof(FloatComplexCalculator)} requered {nameof(FloatComplexParameter)}.");

@@ -4,9 +4,8 @@ using ModifiableParameters.Parameters;
 
 namespace ModifiableParameters.Limiters
 {
-    /// <summary> Дает возможность проверить нет ли модификатора с запрещенным значением. 
-    /// Если находит такой модификатор (например 0), то меняет СorrectedValue на заданное.</summary>
-    public class FloatModifierBanLimiter : AParameterLimiter<float>
+    /// <summary> Checks the list of modifiers for forbidden value. If it finds a banned value, changed correctedCurrValue to this limiter СorrectedValue. </summary>
+    public class FloatModifierBanLimiter : IParameterLimiter<float>
     {
         public float BannedValue;
         public float СorrectedValue;
@@ -19,7 +18,7 @@ namespace ModifiableParameters.Limiters
             ToleranceOffset = toleranceOffset;
         }
         
-        public override bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
+        public bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
         {
             IModifiable<float> modifiable = parameter as IModifiable<float>;
             if (modifiable == null || modifiable.ModifiersCount==0) return true;

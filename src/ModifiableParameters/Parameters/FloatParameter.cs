@@ -8,7 +8,7 @@ namespace ModifiableParameters.Parameters
         {
         }
 
-        public FloatParameter(float baseValue, AParameterCalculator<float> calculateStrategy)
+        public FloatParameter(float baseValue, IParameterCalculator<float> calculateStrategy)
             : base(baseValue, calculateStrategy)
         {
         }

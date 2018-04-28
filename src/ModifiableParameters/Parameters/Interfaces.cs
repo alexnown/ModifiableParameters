@@ -9,7 +9,7 @@ namespace ModifiableParameters.Parameters
     {
         event Action<V> ParameterRecalculated;
         V CurrentValue { get; }
-        AParameterCalculator<V> Calculator { get; set; }
+        IParameterCalculator<V> Calculator { get; set; }
         void RecalculateCurentValue();
     }
     
@@ -32,13 +32,13 @@ namespace ModifiableParameters.Parameters
 
     public interface ILimitable<V>
     {
-        event Action<AParameterLimiter<V>> LimiterAdded;
-        event Action<AParameterLimiter<V>> LimiterRemoved;
+        event Action<IParameterLimiter<V>> LimiterAdded;
+        event Action<IParameterLimiter<V>> LimiterRemoved;
         bool RecalculateOnChangeLimiters { get; set; }
         int LimitersCount { get; }
-        void AddLimiter(AParameterLimiter<V> limiter);
-        void RemoveLimiter(AParameterLimiter<V> limiter);
-        bool ContainsLimiter(AParameterLimiter<V> limiter);
-        IEnumerable<AParameterLimiter<V>> GetLimiters();
+        void AddLimiter(IParameterLimiter<V> limiter);
+        void RemoveLimiter(IParameterLimiter<V> limiter);
+        bool ContainsLimiter(IParameterLimiter<V> limiter);
+        IEnumerable<IParameterLimiter<V>> GetLimiters();
     }
 }

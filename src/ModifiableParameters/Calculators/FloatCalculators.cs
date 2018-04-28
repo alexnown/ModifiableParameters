@@ -4,10 +4,10 @@ using ModifiableParameters.Parameters;
 
 namespace ModifiableParameters.Calculators
 {
-    /// <summary> Стандартная стратегия подсчета параметра. Модификаторы складываются. </summary>
-    public class FloatAdditionCalculator : AParameterCalculator<float>
-    { 
-        public override float CalculateCurrentValue(IParameter<float> parameter)
+    /// <summary> Adds the parameter base value and modifiers value. </summary>
+    public class FloatAdditionCalculator : IParameterCalculator<float>
+    {
+        public float CalculateCurrentValue(IParameter<float> parameter)
         {
             var modifiable = parameter as IModifiableParameter<float>;
             if (modifiable == null) throw new InvalidOperationException($"Parameter {parameter} must implement {nameof(IModifiableParameter<float>)} interface.");

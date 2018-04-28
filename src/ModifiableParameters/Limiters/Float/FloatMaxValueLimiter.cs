@@ -3,7 +3,7 @@
 namespace ModifiableParameters.Limiters
 {
     /// <summary> Задает максимальное значение для CurrentValue параметра. </summary>
-    public class FloatMaxValueLimiter : AParameterLimiter<float>
+    public class FloatMaxValueLimiter : IParameterLimiter<float>
     {
         public float MaxValue;
 
@@ -12,7 +12,7 @@ namespace ModifiableParameters.Limiters
             MaxValue = maxValue;
         }
         
-        public override bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
+        public bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
         {
             if (correctedCurrValue <= MaxValue) return true;
             correctedCurrValue = MaxValue;

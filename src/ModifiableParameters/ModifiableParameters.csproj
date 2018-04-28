@@ -21,8 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>..\..\build\ModifiableParameters.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculators\AParameterCalculator.cs" />
+    <Compile Include="Calculators\IParameterCalculator.cs" />
     <Compile Include="Calculators\BoolCalculators.cs" />
     <Compile Include="Calculators\FloatCalculators.cs" />
     <Compile Include="Calculators\IntCalculators.cs" />
@@ -51,7 +50,7 @@
     <Compile Include="Parameters\ALimitableParameter.cs" />
     <Compile Include="Parameters\AParameter.cs" />
     <Compile Include="Parameters\BoolParameter.cs" />
-    <Compile Include="Limiters\AParameterLimiter.cs" />
+    <Compile Include="Limiters\IParameterLimiter.cs" />
     <Compile Include="Limiters\Float\FloatModifierBanLimiter.cs" />
     <Compile Include="Limiters\Float\FloatMaxValueLimiter.cs" />
     <Compile Include="Limiters\Float\FloatMinValueLimiter.cs" />

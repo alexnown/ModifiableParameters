@@ -3,7 +3,7 @@
 namespace ModifiableParameters.Limiters
 {
     /// <summary> Задает минимальное значение для CurrentValue параметра. </summary>
-    public class FloatMinValueLimiter : AParameterLimiter<float>
+    public class FloatMinValueLimiter : IParameterLimiter<float>
     {
         public float MinValue;
 
@@ -12,7 +12,7 @@ namespace ModifiableParameters.Limiters
             MinValue = minValue;
         }
         
-        public override bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
+        public bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
         {
             if (correctedCurrValue >= MinValue) return false;
             correctedCurrValue = MinValue;

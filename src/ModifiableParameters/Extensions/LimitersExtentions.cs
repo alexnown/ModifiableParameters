@@ -7,7 +7,7 @@ namespace ModifiableParameters.Extensions
 {
     public static class LimitersExtentions
     {
-        public static AParameterLimiter<V>[] RemoveAllLimiters<V>(this ILimitable<V> limitableParameter)
+        public static IParameterLimiter<V>[] RemoveAllLimiters<V>(this ILimitable<V> limitableParameter)
         {
             if (limitableParameter.LimitersCount == 0) return null;
             var limiters = limitableParameter.GetLimiters().ToArray();
@@ -18,7 +18,7 @@ namespace ModifiableParameters.Extensions
             return limiters;
         }
 
-        public static void AddAllLimiters<V>(this ILimitable<V> limitableParameter, IEnumerable<AParameterLimiter<V>> limiters)
+        public static void AddAllLimiters<V>(this ILimitable<V> limitableParameter, IEnumerable<IParameterLimiter<V>> limiters)
         {
             foreach (var limiter in limiters)
             {
