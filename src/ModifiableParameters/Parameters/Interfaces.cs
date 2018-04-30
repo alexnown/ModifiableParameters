@@ -29,7 +29,7 @@ namespace ModifiableParameters.Parameters
     {
         V BaseValue { get; set; }
     }
-
+    
     public interface ILimitable<V>
     {
         event Action<IParameterLimiter<V>> LimiterAdded;
@@ -40,5 +40,10 @@ namespace ModifiableParameters.Parameters
         void RemoveLimiter(IParameterLimiter<V> limiter);
         bool ContainsLimiter(IParameterLimiter<V> limiter);
         IEnumerable<IParameterLimiter<V>> GetLimiters();
+    }
+
+    public interface ILimitableParameter<V> : IParameter<V>, ILimitable<V>
+    {
+
     }
 }

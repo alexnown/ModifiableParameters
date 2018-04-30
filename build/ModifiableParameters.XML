@@ -22,6 +22,59 @@
         <member name="T:ModifiableParameters.Calculators.IntAdditionCalculator">
             <summary> Adds the parameter base value and modifiers value. </summary>
         </member>
+        <member name="M:ModifiableParameters.Extensions.FloatParameterExtensions.SetMax(ModifiableParameters.Parameters.FloatParameter,System.Single)">
+            <summary> Add or update IntMaxValueLimiter to the parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.FloatParameterExtensions.SetMin(ModifiableParameters.Parameters.FloatParameter,System.Single)">
+            <summary> Add or update IntMinValueLimiter to the parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.FloatParameterExtensions.BanValue(ModifiableParameters.Parameters.FloatParameter,System.Single,System.Single,System.Single)">
+            <summary> Add BannedIntLimiter to the parameter limiters. If the parameter CurrentValue equals bannedValue, set it equal correctValue. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.FloatParameterExtensions.BanModifierValue(ModifiableParameters.Parameters.FloatParameter,System.Single,System.Single,System.Single)">
+            <summary> Add BannedIntModifierLimiter to the parameter limiters. 
+            If some modifier value equals bannedValue, set parameter CurrentValue equal correctValue. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.IntParameterExtensions.SetMax(ModifiableParameters.Parameters.IntParameter,System.Int32)">
+            <summary> Add or update IntMaxValueLimiter to the parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.IntParameterExtensions.SetMin(ModifiableParameters.Parameters.IntParameter,System.Int32)">
+            <summary> Add or update IntMinValueLimiter to the parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.IntParameterExtensions.BanValue(ModifiableParameters.Parameters.IntParameter,System.Int32,System.Int32)">
+            <summary> Add BannedIntLimiter to the parameter limiters. If the parameter CurrentValue equals bannedValue, set it equal correctValue. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.IntParameterExtensions.BanModifierValue(ModifiableParameters.Parameters.IntParameter,System.Int32,System.Int32)">
+            <summary> Add BannedIntModifierLimiter to the parameter limiters. 
+            If some modifier value equals bannedValue, set parameter CurrentValue equal correctValue. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.LimitersExtensions.RemoveAllLimiters``1(ModifiableParameters.Parameters.ILimitable{``0})">
+            <summary> Remove and return all limiters from limitable parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.LimitersExtensions.AddAllLimiters``1(ModifiableParameters.Parameters.ILimitable{``0},System.Collections.Generic.IEnumerable{ModifiableParameters.Limiters.IParameterLimiter{``0}})">
+            <summary> Add list of limiters to limitable parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.RemoveAllModifiers``1(ModifiableParameters.Parameters.IModifiable{``0})">
+            <summary> Remove and return all modifiers from modifiable parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.AddAllModifiers``1(ModifiableParameters.Parameters.IModifiable{``0},System.Collections.Generic.IEnumerable{ModifiableParameters.Parameters.ParameterModifier{``0}})">
+            <summary> Add list of modifiers to modifiable parameter. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.BannedFloatLimiter">
+            <summary> If parameter current value equal BannedValue, limiter changes it to CorrectedValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.BannedIntLimiter">
+            <summary> If parameter current value equal BannedValue, limiter changes it to CorrectedValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.BannedIntModifierLimiter">
+            <summary> Checks the list of modifiers for forbidden value. If it finds a banned value, changed correctedCurrValue to this limiter СorrectedValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.IntMaxValueLimiter">
+            <summary> Set maximum limit to the parameter CurrentValue. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Limiters.IntMinValueLimiter">
+            <summary> Set minimum limit to the parameter CurrentValue. </summary>
+        </member>
         <member name="T:ModifiableParameters.Limiters.IParameterLimiter`1">
             <summary> Limiter allows to apply some requirements to calculated CurrentValue. 
             Use for setting limits for current value or checking for 0, etc. </summary>
@@ -33,14 +86,14 @@
             </summary>
             <returns>True if correctedCurrValue meet this limiter.</returns>
         </member>
-        <member name="T:ModifiableParameters.Limiters.FloatModifierBanLimiter">
+        <member name="T:ModifiableParameters.Limiters.BannedFloatModifierLimiter">
             <summary> Checks the list of modifiers for forbidden value. If it finds a banned value, changed correctedCurrValue to this limiter СorrectedValue. </summary>
         </member>
         <member name="T:ModifiableParameters.Limiters.FloatMaxValueLimiter">
-            <summary> Задает максимальное значение для CurrentValue параметра. </summary>
+            <summary> Set maximum limit to the parameter CurrentValue. </summary>
         </member>
         <member name="T:ModifiableParameters.Limiters.FloatMinValueLimiter">
-            <summary> Задает минимальное значение для CurrentValue параметра. </summary>
+            <summary> Set minimum limit to the parameter CurrentValue. </summary>
         </member>
         <member name="T:ModifiableParameters.Parameters.ALimitableParameter`1">
             <summary> Abstract parameter that implements ILimitable interface.

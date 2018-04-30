@@ -5,8 +5,9 @@ using ModifiableParameters.Parameters;
 
 namespace ModifiableParameters.Extensions
 {
-    public static class LimitersExtentions
+    public static class LimitersExtensions
     {
+        /// <summary> Remove and return all limiters from limitable parameter. </summary>
         public static IParameterLimiter<V>[] RemoveAllLimiters<V>(this ILimitable<V> limitableParameter)
         {
             if (limitableParameter.LimitersCount == 0) return null;
@@ -18,6 +19,7 @@ namespace ModifiableParameters.Extensions
             return limiters;
         }
 
+        /// <summary> Add list of limiters to limitable parameter. </summary>
         public static void AddAllLimiters<V>(this ILimitable<V> limitableParameter, IEnumerable<IParameterLimiter<V>> limiters)
         {
             foreach (var limiter in limiters)

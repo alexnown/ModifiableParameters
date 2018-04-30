@@ -6,18 +6,18 @@ namespace ModifiableParameters.Limiters
     public class BannedIntLimiter : IParameterLimiter<int>
     {
         public int BannedValue;
-        public int CorrectValue;
+        public int CorrectedValue;
 
-        public BannedIntLimiter(int bannedValue, int correctValue)
+        public BannedIntLimiter(int bannedValue, int correctedValue)
         {
             BannedValue = bannedValue;
-            CorrectValue = correctValue;
+            CorrectedValue = correctedValue;
         }
 
         public bool IsMeetLimit(IParameter<int> parameter, ref int correctedCurrValue)
         {
             if (correctedCurrValue != BannedValue) return true;
-            correctedCurrValue = CorrectValue;
+            correctedCurrValue = CorrectedValue;
             return false;
         }
     }

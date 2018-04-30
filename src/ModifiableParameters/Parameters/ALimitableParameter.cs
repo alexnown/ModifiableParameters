@@ -7,7 +7,7 @@ namespace ModifiableParameters.Parameters
 {
     /// <summary> Abstract parameter that implements ILimitable interface.
     /// Limiters apply to CurrentValue after recalculate and allow you to limit the resulting value. </summary>
-    public abstract class ALimitableParameter<V> : AParameter<V>, ILimitable<V>
+    public abstract class ALimitableParameter<V> : AParameter<V>, ILimitableParameter<V>
     {
         private List<IParameterLimiter<V>> _parameterLimitersList;
 
@@ -39,8 +39,8 @@ namespace ModifiableParameters.Parameters
             if (ContainsLimiter(limiter)) throw new InvalidOperationException("Limiter already exists");
             if (_parameterLimitersList == null) _parameterLimitersList = new List<IParameterLimiter<V>>();
             _parameterLimitersList.Add(limiter);
-            if (RecalculateOnChangeLimiters) RecalculateCurentValue();
             LimiterAdded?.Invoke(limiter);
+            if (RecalculateOnChangeLimiters) RecalculateCurentValue();
         }
 
         public void RemoveLimiter(IParameterLimiter<V> limiter)
@@ -49,8 +49,8 @@ namespace ModifiableParameters.Parameters
             bool success = _parameterLimitersList.Remove(limiter);
             if (success)
             {
-                if (RecalculateOnChangeLimiters) RecalculateCurentValue();
                 LimiterRemoved?.Invoke(limiter);
+                if (RecalculateOnChangeLimiters) RecalculateCurentValue();
             }
         }
 
