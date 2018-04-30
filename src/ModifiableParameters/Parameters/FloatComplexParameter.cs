@@ -13,8 +13,8 @@ namespace ModifiableParameters.Parameters
         {
             NumericPart = new FloatParameter(numericValue);
             MultiplierPart = new FloatParameter(multiplier);
-            NumericPart.ParameterRecalculated += OnPartRecalculated;
-            MultiplierPart.ParameterRecalculated += OnPartRecalculated;
+            NumericPart.Recalculated += OnPartRecalculated;
+            MultiplierPart.Recalculated += OnPartRecalculated;
             RecalculateCurentValue();
         }
 

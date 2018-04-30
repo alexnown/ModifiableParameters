@@ -8,7 +8,7 @@ namespace ModifiableParameters.Parameters
 {
     public abstract class AParameter<V> : IParameter<V>
     {
-        public event Action<V> ParameterRecalculated;
+        public event Action<V> Recalculated;
         public V CurrentValue => _currentValue;
 
         public IParameterCalculator<V> Calculator
@@ -24,7 +24,7 @@ namespace ModifiableParameters.Parameters
 
         protected IParameterCalculator<V> _calculateStrategy;
         protected V _currentValue;
-        protected void OnRecalculate(V newValue) => ParameterRecalculated?.Invoke(newValue);
+        protected void OnRecalculate(V newValue) => Recalculated?.Invoke(newValue);
         
         public virtual void RecalculateCurentValue()
         {

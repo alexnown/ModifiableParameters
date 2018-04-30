@@ -44,7 +44,7 @@ namespace TestsModifiableParameters.Parameters
             var parameter = new FloatComplexParameter(10, 2);
             bool recalculateHandled = false;
             Action<float> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
 
             parameter.NumericPart.BaseValue = 20;
             Assert.AreEqual(true, recalculateHandled);
@@ -53,7 +53,7 @@ namespace TestsModifiableParameters.Parameters
             parameter.MultiplierPart.BaseValue = 1;
             Assert.AreEqual(true, recalculateHandled);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace TestsModifiableParameters.Parameters
             var modifier = new FloatModifier(10);
             bool recalculateHandled = false;
             Action<float> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
 
             recalculateHandled = false;
             parameter.NumericPart.AddModifier(modifier);

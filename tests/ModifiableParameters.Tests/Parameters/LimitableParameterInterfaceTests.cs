@@ -33,7 +33,7 @@ namespace TestsModifiableParameters.Parameters
             var limiter = limiterMock.Object;
             bool recalculateHandled = false;
             Action<V> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
 
             parameter.AddLimiter(limiter);
             Assert.AreEqual(expectRecalculate, recalculateHandled);
@@ -45,7 +45,7 @@ namespace TestsModifiableParameters.Parameters
                 limiterMock.Verify(m => m.IsMeetLimit(It.IsAny<IParameter<V>>(), ref It.Ref<V>.IsAny), Times.Once);
             }
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
         }
 
         public void AddLimiter_CheckEventsOrder(ILimitableParameter<V> parameter)
@@ -66,7 +66,7 @@ namespace TestsModifiableParameters.Parameters
                 addEventSequence = eventSequence;
             };
 
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
             parameter.LimiterAdded += limiterChangeHandler;
 
             parameter.AddLimiter(limiter);
@@ -75,7 +75,7 @@ namespace TestsModifiableParameters.Parameters
             int recalculateExpectedSequence = parameter.RecalculateOnChangeLimiters ? 2 : 0;
             Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
             parameter.LimiterAdded -= limiterChangeHandler;
             parameter.RemoveLimiter(limiter);
         }
@@ -100,7 +100,7 @@ namespace TestsModifiableParameters.Parameters
                 removeEventSequence = eventSequence;
             };
 
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
             parameter.LimiterRemoved += limiterChangeHandler;
 
             parameter.RemoveLimiter(limiter);
@@ -109,7 +109,7 @@ namespace TestsModifiableParameters.Parameters
             int recalculateExpectedSequence = parameter.RecalculateOnChangeLimiters ? 2 : 0;
             Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
             parameter.LimiterRemoved -= limiterChangeHandler;
         }
 

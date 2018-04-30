@@ -27,12 +27,12 @@ namespace TestsModifiableParameters.Parameters
         {
             bool recalculateHandled = false;
             Action<V> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
 
             parameter.BaseValue = newBaseValue;
             Assert.AreEqual(true, recalculateHandled);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
         }
 
         public void ChangeModifier_HandleRecalculateEvent(IModifiableParameter<V> parameter)
@@ -40,7 +40,7 @@ namespace TestsModifiableParameters.Parameters
             var modifier = new ParameterModifier<V>(default(V));
             bool recalculateHandled = false;
             Action<V> recalculateEventHandler = (newValue) => { recalculateHandled = true; };
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
 
             parameter.AddModifier(modifier);
             Assert.AreEqual(true, recalculateHandled);
@@ -48,7 +48,7 @@ namespace TestsModifiableParameters.Parameters
             parameter.RemoveModifier(modifier);
             Assert.AreEqual(true, recalculateHandled);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
         }
 
         public void AddModifier_CheckEventsOrder(IModifiableParameter<V> parameter)
@@ -69,7 +69,7 @@ namespace TestsModifiableParameters.Parameters
                 modifierEventSequence = eventSequence;
             };
 
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
             parameter.ModifierAdded += modifierChangeHandler;
 
             parameter.AddModifier(modifier);
@@ -78,7 +78,7 @@ namespace TestsModifiableParameters.Parameters
             int recalculateExpectedSequence = parameter.RecalculateOnChangeModifiers ? 2 : 0;
             Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
             parameter.ModifierAdded -= modifierChangeHandler;
             parameter.RemoveModifier(modifier);
         }
@@ -102,7 +102,7 @@ namespace TestsModifiableParameters.Parameters
                 modifierEventSequence = eventSequence;
             };
 
-            parameter.ParameterRecalculated += recalculateEventHandler;
+            parameter.Recalculated += recalculateEventHandler;
             parameter.ModifierRemoved += modifierChangeHandler;
 
             parameter.RemoveModifier(modifier);
@@ -112,7 +112,7 @@ namespace TestsModifiableParameters.Parameters
             Assert.AreEqual(recalculateExpectedSequence, recalculateEventSequence);
 
 
-            parameter.ParameterRecalculated -= recalculateEventHandler;
+            parameter.Recalculated -= recalculateEventHandler;
             parameter.ModifierRemoved -= modifierChangeHandler;
         }
 

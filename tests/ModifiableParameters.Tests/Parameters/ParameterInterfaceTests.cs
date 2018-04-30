@@ -29,12 +29,12 @@ namespace TestsModifiableParameters.Parameters
         {
             bool recalculateEventHanded = false;
             Action<V> recalculateAction = (newValue) => { recalculateEventHanded = true; };
-            parameter.ParameterRecalculated += recalculateAction;
+            parameter.Recalculated += recalculateAction;
 
             parameter.RecalculateCurentValue();
             Assert.AreEqual(true, recalculateEventHanded);
 
-            parameter.ParameterRecalculated -= recalculateAction;
+            parameter.Recalculated -= recalculateAction;
         }
 
 
@@ -48,14 +48,14 @@ namespace TestsModifiableParameters.Parameters
 
             bool recalculateEventHanded = false;
             Action<V> recalculateAction = (newValue) => { recalculateEventHanded = true; };
-            parameter.ParameterRecalculated += recalculateAction;
+            parameter.Recalculated += recalculateAction;
 
             parameter.Calculator = calculatorMock.Object;
             Assert.AreEqual(true, recalculateEventHanded);
             Assert.AreEqual(someValue, parameter.CurrentValue);
             calculatorMock.Verify(p => p.CalculateCurrentValue(parameter), Times.Once);
 
-            parameter.ParameterRecalculated -= recalculateAction;
+            parameter.Recalculated -= recalculateAction;
             parameter.Calculator = prevCalculator;
         }
 

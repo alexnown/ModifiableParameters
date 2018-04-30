@@ -7,7 +7,7 @@ namespace ModifiableParameters.Parameters
 {
     public interface IParameter<V>
     {
-        event Action<V> ParameterRecalculated;
+        event Action<V> Recalculated;
         V CurrentValue { get; }
         IParameterCalculator<V> Calculator { get; set; }
         void RecalculateCurentValue();
