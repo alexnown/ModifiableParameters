@@ -31,6 +31,14 @@ namespace TestsModifiableParameters.Parameters
         }
 
         [TestMethod]
+        public void RunLimitableParameterInterfaceTests()
+        {
+            var parameter = new FloatComplexParameter(10, 2);
+            var limitableParameterTests = new LimitableParameterInterfaceTests<float>();
+            limitableParameterTests.RunTests(parameter, GetRandomValueFunc);
+        }
+
+        [TestMethod]
         public void ChangeBaseValue_HandleRecalculateEvent()
         {
             var parameter = new FloatComplexParameter(10, 2);

@@ -76,7 +76,14 @@
     <Compile Include="Calculators\BoolCalculatorsTests.cs" />
     <Compile Include="Calculators\FloatCalculatorTests.cs" />
     <Compile Include="Calculators\IntCalculatorTests.cs" />
+    <Compile Include="Extensions\FloatParameterExtensionTests.cs" />
+    <Compile Include="Extensions\IntParameterExtensionTests.cs" />
+    <Compile Include="Extensions\LimitersExtensionsTests.cs" />
+    <Compile Include="Extensions\ModifiersExtensionsTests.cs" />
+    <Compile Include="Limiters\FloatLimiterTests.cs" />
+    <Compile Include="Limiters\IntLimiterTests.cs" />
     <Compile Include="Parameters\LimitableInterfaceTests.cs" />
+    <Compile Include="Parameters\LimitableParameterInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableInterfaceTests.cs" />
     <Compile Include="Parameters\ModifiableParameterInterfaceTests.cs" />
     <Compile Include="Parameters\ParameterInterfaceTests.cs" />
@@ -90,6 +97,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

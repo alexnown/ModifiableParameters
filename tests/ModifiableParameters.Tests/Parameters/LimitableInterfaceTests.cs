@@ -84,11 +84,13 @@ namespace TestsModifiableParameters.Parameters
             bool addedEventHandled = false;
             Action<IParameterLimiter<V>> addEventHandler = parameterModifier => addedEventHandled = true;
             parameter.LimiterAdded += addEventHandler;
-            var limiter = PrepareLimiterMock().Object;
+            var limiterMock = PrepareLimiterMock();
+            var limiter = limiterMock.Object;
             parameter.AddLimiter(limiter);
             Assert.AreEqual(true, addedEventHandled);
             bool isContained = parameter.ContainsLimiter(limiter);
             Assert.AreEqual(true, isContained);
+            limiterMock.Verify(m => m.IsMeetLimit(It.IsAny<IParameter<V>>(),ref It.Ref<V>.IsAny),Times.Once);
 
             parameter.RemoveLimiter(limiter);
             parameter.LimiterRemoved -= addEventHandler;
