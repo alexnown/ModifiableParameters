@@ -3,16 +3,16 @@
 namespace ModifiableParameters.Limiters
 {
     /// <summary> Set maximum limit to the parameter CurrentValue. </summary>
-    public class FloatMaxValueLimiter : IParameterLimiter<float>
+    public class IntMaxValueLimiter : IParameterLimiter<int>
     {
-        public float MaxValue;
+        public int MaxValue;
 
-        public FloatMaxValueLimiter(float maxValue)
+        public IntMaxValueLimiter(int maxValue)
         {
             MaxValue = maxValue;
         }
-        
-        public bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
+
+        public bool IsMeetLimit(IParameter<int> parameter, ref int correctedCurrValue)
         {
             if (correctedCurrValue <= MaxValue) return true;
             correctedCurrValue = MaxValue;

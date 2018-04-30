@@ -3,16 +3,16 @@
 namespace ModifiableParameters.Limiters
 {
     /// <summary> Set minimum limit to the parameter CurrentValue. </summary>
-    public class FloatMinValueLimiter : IParameterLimiter<float>
+    public class IntMinValueLimiter : IParameterLimiter<int>
     {
-        public float MinValue;
+        public int MinValue;
 
-        public FloatMinValueLimiter(float minValue)
+        public IntMinValueLimiter(int minValue)
         {
             MinValue = minValue;
         }
-        
-        public bool IsMeetLimit(IParameter<float> parameter, ref float correctedCurrValue)
+
+        public bool IsMeetLimit(IParameter<int> parameter, ref int correctedCurrValue)
         {
             if (correctedCurrValue >= MinValue) return false;
             correctedCurrValue = MinValue;

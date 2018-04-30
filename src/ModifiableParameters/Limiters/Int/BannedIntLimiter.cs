@@ -2,10 +2,17 @@
 
 namespace ModifiableParameters.Limiters
 {
-    public class IntBanLimiter : IParameterLimiter<int>
+    /// <summary> If parameter current value equal BannedValue, limiter changes it to CorrectedValue. </summary>
+    public class BannedIntLimiter : IParameterLimiter<int>
     {
         public int BannedValue;
         public int CorrectValue;
+
+        public BannedIntLimiter(int bannedValue, int correctValue)
+        {
+            BannedValue = bannedValue;
+            CorrectValue = correctValue;
+        }
 
         public bool IsMeetLimit(IParameter<int> parameter, ref int correctedCurrValue)
         {
