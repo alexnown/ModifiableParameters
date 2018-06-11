@@ -12,7 +12,7 @@ namespace ModifiableParameters.Parameters
         IParameterCalculator<V> Calculator { get; set; }
         void RecalculateCurentValue();
     }
-    
+
     public interface IModifiable<V>
     {
         event Action<ParameterModifier<V>> ModifierAdded;
@@ -25,9 +25,14 @@ namespace ModifiableParameters.Parameters
         IEnumerable<ParameterModifier<V>> GetModifiers();
     }
 
-    public interface IModifiableParameter<V> : IParameter<V>, IModifiable<V>
+    public interface IHasBaseValue<V>
     {
         V BaseValue { get; set; }
+    }
+
+    public interface IModifiableParameter<V> : IParameter<V>, IModifiable<V>, IHasBaseValue<V>
+    {
+        
     }
     
     public interface ILimitable<V>
