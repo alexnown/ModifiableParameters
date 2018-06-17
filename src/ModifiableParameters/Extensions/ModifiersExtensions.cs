@@ -26,5 +26,24 @@ namespace ModifiableParameters.Extensions
                 modifiableParameter.AddModifier(modifier);
             }
         }
+
+        /// <summary> Returns true if modifier not contains in parameter and was successfully added. </summary>
+        public static bool TryAddModifier<V>(this IModifiable<V> modifiableParameter, ParameterModifier<V> modifier)
+        {
+            if(modifiableParameter.ContainsModifier(modifier)) return false;
+            modifiableParameter.AddModifier(modifier);
+            return true;
+        }
+
+        /// <summary> Returns true if modifier contains in parameter and was successfully removed. </summary>
+        public static bool TryRemoveModifier<V>(this IModifiable<V> modifiableParameter, ParameterModifier<V> modifier)
+        {
+            if (modifiableParameter.ContainsModifier(modifier))
+            {
+                modifiableParameter.RemoveModifier(modifier);
+                return true;
+            }
+            return false;
+        }
     }
 }

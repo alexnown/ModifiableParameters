@@ -4,6 +4,9 @@
         <name>ModifiableParameters</name>
     </assembly>
     <members>
+        <member name="T:ModifiableParameters.Calculators.ConstantValueCalculator`1">
+            <summary> Just sets ConstantValue as CurrentValue of parameter regardless of parameter properties. </summary>
+        </member>
         <member name="T:ModifiableParameters.Calculators.IParameterCalculator`1">
             <summary> Algorithm for applying the modifier list to calculate the CurrentValue of the parameter. </summary>
         </member>
@@ -21,6 +24,9 @@
         </member>
         <member name="T:ModifiableParameters.Calculators.IntAdditionCalculator">
             <summary> Adds the parameter base value and modifiers value. </summary>
+        </member>
+        <member name="T:ModifiableParameters.Calculators.ConstantBaseValueCalculator`1">
+            <summary> Sets BaseValue as CurrentValue of parameter regardless of parameter properties. </summary>
         </member>
         <member name="M:ModifiableParameters.Extensions.FloatParameterExtensions.SetMax(ModifiableParameters.Parameters.FloatParameter,System.Single)">
             <summary> Add or update IntMaxValueLimiter to the parameter. </summary>
@@ -59,6 +65,12 @@
         </member>
         <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.AddAllModifiers``1(ModifiableParameters.Parameters.IModifiable{``0},System.Collections.Generic.IEnumerable{ModifiableParameters.Parameters.ParameterModifier{``0}})">
             <summary> Add list of modifiers to modifiable parameter. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.TryAddModifier``1(ModifiableParameters.Parameters.IModifiable{``0},ModifiableParameters.Parameters.ParameterModifier{``0})">
+            <summary> Returns true if modifier not contains in parameter and was successfully added. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.TryRemoveModifier``1(ModifiableParameters.Parameters.IModifiable{``0},ModifiableParameters.Parameters.ParameterModifier{``0})">
+            <summary> Returns true if modifier contains in parameter and was successfully removed. </summary>
         </member>
         <member name="T:ModifiableParameters.Limiters.BannedFloatLimiter">
             <summary> If parameter current value equal BannedValue, limiter changes it to CorrectedValue. </summary>
