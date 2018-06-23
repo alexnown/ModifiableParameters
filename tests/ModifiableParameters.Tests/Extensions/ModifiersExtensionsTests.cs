@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModifiableParameters.Extensions;
 using ModifiableParameters.Parameters;
@@ -44,6 +45,47 @@ namespace TestsModifiableParameters.Extensions
             {
                 Assert.IsTrue(parameter.GetModifiers().Contains(modifier));
             }
+        }
+
+        [TestMethod]
+        public void TryAddModifierTest()
+        {
+            var parameter = new IntParameter(0);
+            var modifier = new IntModifier(0);
+
+            bool firstAddingResult = parameter.TryAddModifier(modifier);
+            Assert.IsTrue(firstAddingResult);
+            bool secondAddomgResult = parameter.TryAddModifier(modifier);
+            Assert.IsFalse(secondAddomgResult);
+            try
+            {
+                parameter.TryAddModifier(null);
+                Assert.Fail($"{nameof(ArgumentNullException)} not throws on add null modifier.");
+            }
+            catch (ArgumentNullException e) { }
+        }
+
+        [TestMethod]
+        public void TryRemoveModifierTest()
+        {
+            var parameter = new IntParameter(0);
+            var modifier = new IntModifier(0);
+
+            bool wrongRemove = parameter.TryRemoveModifier(modifier);
+            Assert.IsFalse(wrongRemove);
+
+            parameter.AddModifier(modifier);
+
+            bool firstRemoveResult = parameter.TryRemoveModifier(modifier);
+            Assert.IsTrue(firstRemoveResult);
+            bool secondRemoveResult = parameter.TryRemoveModifier(modifier);
+            Assert.IsFalse(secondRemoveResult);
+            try
+            {
+                parameter.TryRemoveModifier(null);
+                Assert.Fail($"{nameof(ArgumentNullException)} not throws on remove null modifier.");
+            }
+            catch (ArgumentNullException e) { }
         }
     }
 }
