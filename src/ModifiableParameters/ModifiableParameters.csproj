@@ -62,6 +62,7 @@
     <Compile Include="Limiters\Float\BannedFloatModifierLimiter.cs" />
     <Compile Include="Limiters\Float\FloatMaxValueLimiter.cs" />
     <Compile Include="Limiters\Float\FloatMinValueLimiter.cs" />
+    <Compile Include="Parameters\PrecludingParameter.cs" />
     <Compile Include="Parameters\SimpleParameter.cs" />
     <Compile Include="Parameters\FloatComplexParameter.cs" />
     <Compile Include="Parameters\FloatParameter.cs" />

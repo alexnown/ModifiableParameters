@@ -111,6 +111,9 @@
             <summary> Abstract parameter that implements ILimitable interface.
             Limiters apply to CurrentValue after recalculate and allow you to limit the resulting value. </summary>
         </member>
+        <member name="T:ModifiableParameters.Parameters.PrecludingParameter">
+            <summary> Precluding parameter contains modifiers with specifier reason to preclusion. If contains any modifier, return !BaseValue. </summary>
+        </member>
         <member name="T:ModifiableParameters.Parameters.FloatComplexCalculator">
             <summary> Multiplies NumericPart value by MultiplierPart value. </summary>
         </member>
