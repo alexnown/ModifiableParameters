@@ -60,6 +60,12 @@
         <member name="M:ModifiableParameters.Extensions.LimitersExtensions.AddAllLimiters``1(ModifiableParameters.Parameters.ILimitable{``0},System.Collections.Generic.IEnumerable{ModifiableParameters.Limiters.IParameterLimiter{``0}})">
             <summary> Add list of limiters to limitable parameter. </summary>
         </member>
+        <member name="M:ModifiableParameters.Extensions.LimitersExtensions.TryAddLimiter``1(ModifiableParameters.Parameters.ILimitable{``0},ModifiableParameters.Limiters.IParameterLimiter{``0})">
+            <summary> Returns true if limiter not contains in parameter and was successfully added. </summary>
+        </member>
+        <member name="M:ModifiableParameters.Extensions.LimitersExtensions.TryRemoveModifier``1(ModifiableParameters.Parameters.ILimitable{``0},ModifiableParameters.Limiters.IParameterLimiter{``0})">
+            <summary> Returns true if limiter contains in parameter and was successfully removed. </summary>
+        </member>
         <member name="M:ModifiableParameters.Extensions.ModifiersExtensions.RemoveAllModifiers``1(ModifiableParameters.Parameters.IModifiable{``0})">
             <summary> Remove and return all modifiers from modifiable parameter. </summary>
         </member>

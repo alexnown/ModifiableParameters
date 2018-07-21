@@ -27,5 +27,24 @@ namespace ModifiableParameters.Extensions
                 limitableParameter.AddLimiter(limiter);
             }
         }
+
+        /// <summary> Returns true if limiter not contains in parameter and was successfully added. </summary>
+        public static bool TryAddLimiter<V>(this ILimitable<V> limitableParameter, IParameterLimiter<V> limiter)
+        {
+            if (limitableParameter.ContainsLimiter(limiter)) return false;
+            limitableParameter.AddLimiter(limiter);
+            return true;
+        }
+
+        /// <summary> Returns true if limiter contains in parameter and was successfully removed. </summary>
+        public static bool TryRemoveModifier<V>(this ILimitable<V> limitableParameter, IParameterLimiter<V> limiter)
+        {
+            if (limitableParameter.ContainsLimiter(limiter))
+            {
+                limitableParameter.RemoveLimiter(limiter);
+                return true;
+            }
+            return false;
+        }
     }
 }
